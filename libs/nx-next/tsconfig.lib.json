@@ -1,11 +1,13 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "esModuleInterop": true,
     "module": "commonjs",
     "outDir": "../../dist/out-tsc",
     "declaration": true,
     "rootDir": ".",
-    "types": ["node"]
+    "types": ["node"],
+    "lib": ["dom"]
   },
   "exclude": ["**/*.spec.ts"],
   "include": ["**/*.ts"]

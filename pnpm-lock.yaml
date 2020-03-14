@@ -53,6 +53,8 @@ importers:
       rxjs: 6.5.3
       tsconfig-paths-webpack-plugin: 3.2.0
     devDependencies:
+      '@types/react': 16.9.23
+      '@types/react-dom': 16.9.5
       next: 9.1.5_react-dom@16.13.0+react@16.13.0
       react: 16.13.0
       react-dom: 16.13.0_react@16.13.0
@@ -60,6 +62,8 @@ importers:
       '@angular-devkit/architect': 0.900.6
       '@angular-devkit/core': 9.0.6
       '@angular-devkit/schematics': 9.0.6
+      '@types/react': 16.9.23
+      '@types/react-dom': 16.9.5
       '@types/webpack': 4.41.7
       next: 9.1.5
       react: 16.13.0
@@ -1516,6 +1520,23 @@ packages:
     dev: true
     resolution:
       integrity: sha512-gDE8JJEygpay7IjA/u3JiIURvwZW08f0cZSZLAzFoX/ZmeqvS0Sqv+97aKuHpNsalAMMhwPe+iAS6fQbfmbt7A==
+  /@types/prop-types/15.7.3:
+    dev: true
+    resolution:
+      integrity: sha512-KfRL3PuHmqQLOG+2tGpRO26Ctg+Cq1E01D2DMriKEATHgWLfeNDmq9e29Q9WIky0dQ3NPkd1mzYH8Lm936Z9qw==
+  /@types/react-dom/16.9.5:
+    dependencies:
+      '@types/react': 16.9.23
+    dev: true
+    resolution:
+      integrity: sha512-BX6RQ8s9D+2/gDhxrj8OW+YD4R+8hj7FEM/OJHGNR0KipE1h1mSsf39YeyC81qafkq+N3rU3h3RFbLSwE5VqUg==
+  /@types/react/16.9.23:
+    dependencies:
+      '@types/prop-types': 15.7.3
+      csstype: 2.6.9
+    dev: true
+    resolution:
+      integrity: sha512-SsGVT4E7L2wLN3tPYLiF20hmZTPGuzaayVunfgXzUn1x4uHVsKH6QDJQ/TdpHqwsTLd4CwrmQ2vOgxN7gE24gw==
   /@types/source-list-map/0.1.2:
     resolution:
       integrity: sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==
@@ -3205,6 +3226,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-GBrLZYZ4X4x6/QEoBnIrqb8B/f5l4+8me2dkom/j1Gtbxy0kBv6OGzKuAsGM75bkGwGAFkt56Iwg28S3XTZgSA==
+  /csstype/2.6.9:
+    dev: true
+    resolution:
+      integrity: sha512-xz39Sb4+OaTsULgUERcCk+TJj8ylkL4aSVDQiX/ksxbELSqwkgt4d4RD7fovIdgJGSuNYqwZEiVjYY5l0ask+Q==
   /cyclist/1.0.1:
     dev: true
     resolution:
