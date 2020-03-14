@@ -11,7 +11,9 @@ module.exports = {
     project: [
       './tsconfig.json',
       './apps/*/tsconfig.json',
-      './libs/*/tsconfig.json'
+      './apps/*/tsconfig.*.json',
+      './libs/*/tsconfig.json',
+      './libs/*/tsconfig.*.json'
     ]
   },
   plugins: ['@typescript-eslint', '@nrwl/nx'],
