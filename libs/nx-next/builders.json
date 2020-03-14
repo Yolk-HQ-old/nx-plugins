@@ -5,6 +5,21 @@
       "implementation": "./src/builders/example/builder",
       "schema": "./src/builders/example/schema.json",
       "description": "example builder"
+    },
+    "build": {
+      "implementation": "./src/builders/build/build.impl",
+      "schema": "./src/builders/build/schema.json",
+      "description": "Build a Next.js app"
+    },
+    "dev-server": {
+      "implementation": "./src/builders/dev-server/dev-server.impl",
+      "schema": "./src/builders/dev-server/schema.json",
+      "description": "Serve a Next.js app"
+    },
+    "export": {
+      "implementation": "./src/builders/export/export.impl",
+      "schema": "./src/builders/export/schema.json",
+      "description": "Export a Next.js app. The exported application is located at dist/$outputPath/exported."
     }
   }
 }
