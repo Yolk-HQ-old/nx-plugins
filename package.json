@@ -31,6 +31,7 @@
     "@nrwl/eslint-plugin-nx": "9.1.2",
     "@nrwl/jest": "9.1.2",
     "@nrwl/cli": "9.1.2",
+    "@nrwl/node": "9.1.2",
     "@nrwl/nx-plugin": "9.1.2",
     "@nrwl/tao": "9.1.2",
     "@nrwl/workspace": "9.1.2",

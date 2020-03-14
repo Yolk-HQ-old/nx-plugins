@@ -4,6 +4,7 @@ importers:
       '@nrwl/cli': 9.1.2
       '@nrwl/eslint-plugin-nx': 9.1.2_7900b4d32aa6a582171f2c43f81672b6
       '@nrwl/jest': 9.1.2_@nrwl+workspace@9.1.2
+      '@nrwl/node': 9.1.2_b0472d9aed57d9d253ddf732a6e39bce
       '@nrwl/nx-plugin': 9.1.2_b0472d9aed57d9d253ddf732a6e39bce
       '@nrwl/tao': 9.1.2
       '@nrwl/workspace': 9.1.2_prettier@1.19.1
@@ -25,6 +26,7 @@ importers:
       '@nrwl/cli': 9.1.2
       '@nrwl/eslint-plugin-nx': 9.1.2
       '@nrwl/jest': 9.1.2
+      '@nrwl/node': 9.1.2
       '@nrwl/nx-plugin': 9.1.2
       '@nrwl/tao': 9.1.2
       '@nrwl/workspace': 9.1.2
@@ -570,7 +572,7 @@ packages:
     dependencies:
       '@types/events': 3.0.0
       '@types/minimatch': 3.0.3
-      '@types/node': 8.9.5
+      '@types/node': 12.12.30
     dev: true
     resolution:
       integrity: sha512-1Bh06cbWJUHMC97acuD6UMG29nMt0Aqz1vF3guLfG+kHHJhy3AyohZFFxYk2f7Q1SQIrNwvncxAE0N/9s70F2w==
@@ -613,10 +615,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-sz9MF/zk6qVr3pAnM0BSQvYIBK44tS75QC5N+VbWSE4DjCV/pJ+UzCW/F+vVnl7TkOPcuwQureKNtSSwjBTaMg==
-  /@types/node/8.9.5:
-    dev: true
-    resolution:
-      integrity: sha512-jRHfWsvyMtXdbhnz5CVHxaBgnV6duZnPlQuRSo/dm/GnmikNcmZhxIES4E9OZjUmQ8C+HCl4KJux+cXN/ErGDQ==
   /@types/prettier/1.19.0:
     dev: true
     resolution:
@@ -631,7 +629,7 @@ packages:
       integrity: sha512-l42BggppR6zLmpfU6fq9HEa2oGPEI8yrSPL3GITjfRInppYFahObbIQOQK3UGxEnyQpltZLaPe75046NOZQikw==
   /@types/webpack-sources/0.1.6:
     dependencies:
-      '@types/node': 8.9.5
+      '@types/node': 12.12.30
       '@types/source-list-map': 0.1.2
       source-map: 0.6.1
     dev: true
