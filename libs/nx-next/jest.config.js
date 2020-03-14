@@ -1,8 +1,8 @@
 module.exports = {
   name: 'nx-next',
-  preset: '../../jest.config.js',
+  preset: require.resolve('../../jest.config.js'),
   transform: {
-    '^.+\\.[tj]sx?$': 'ts-jest'
+    '^.+\\.[tj]sx?$': require.resolve('ts-jest')
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
   coverageDirectory: '../../coverage/libs/nx-next'
