@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "esModuleInterop": true,
     "importHelpers": true,
     "lib": ["es2017"],
     "module": "esnext",

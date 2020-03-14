@@ -1,9 +1,13 @@
+const path = require('path');
+
 module.exports = {
+  globals: {
+    'ts-jest': { packageJson: path.join(__dirname, 'package.json') }
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   name: 'nx-next',
-  preset: require.resolve('../../jest.config.js'),
+  resolver: require.resolve('@nrwl/jest/plugins/resolver'),
   transform: {
     '^.+\\.[tj]sx?$': require.resolve('ts-jest')
-  },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'html'],
-  coverageDirectory: '../../coverage/libs/nx-next'
+  }
 };

@@ -1,41 +1,31 @@
+import '../../utils/workspaceHotfix';
 import { MockBuilderContext } from '@nrwl/workspace/testing';
 import * as build from 'next/dist/build';
 import { getMockContext } from '../../utils/testing';
-import { NextBuildBuilderOptions } from '../../utils/types';
-import { run } from './build.impl';
+import {} from '../../utils/types';
+import { runBuilder } from './build.impl';
+import { BuildBuilderSchema } from './schema';
 
 jest.mock('next/dist/build');
 
 describe('Next.js Builder', () => {
   let context: MockBuilderContext;
-  let options: NextBuildBuilderOptions;
+  let options: BuildBuilderSchema;
 
   beforeEach(async () => {
     context = await getMockContext();
 
     options = {
       root: 'apps/wibble',
-      outputPath: 'dist/apps/wibble',
-      fileReplacements: [
-        {
-          replace: 'apps/wibble/src/environment.ts',
-          with: 'apps/wibble/src/environment.prod.ts',
-        },
-      ],
+      outputPath: 'dist/apps/wibble'
     };
 
     jest.spyOn(build, 'default').mockReturnValue(Promise.resolve());
   });
 
   it('should call next build', async () => {
-    await run(options, context).toPromise();
+    await runBuilder(options, context).toPromise();
 
-    expect(build.default).toHaveBeenCalledWith(
-      '/root/apps/wibble',
-      expect.objectContaining({
-        distDir: '../../dist/apps/wibble',
-        outdir: '../../dist/apps/wibble',
-      }),
-    );
+    expect(build.default).toHaveBeenCalledWith('/root/apps/wibble');
   });
 });

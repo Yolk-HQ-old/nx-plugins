@@ -42,6 +42,9 @@ module.exports = {
       files: ['jest.config.js'],
       env: {
         node: true
+      },
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off'
       }
     }
   ]

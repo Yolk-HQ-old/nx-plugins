@@ -22,12 +22,8 @@ describe('nx-next e2e', () => {
     it('should create src in the specified directory', async done => {
       const plugin = uniq('nx-next');
       ensureNxProject('@yolkai/nx-next', 'dist/libs/nx-next');
-      await runNxCommandAsync(
-        `generate @yolkai/nx-next:example ${plugin} --directory subdir`
-      );
-      expect(() =>
-        checkFilesExist(`libs/subdir/${plugin}/src/index.ts`)
-      ).not.toThrow();
+      await runNxCommandAsync(`generate @yolkai/nx-next:example ${plugin} --directory subdir`);
+      expect(() => checkFilesExist(`libs/subdir/${plugin}/src/index.ts`)).not.toThrow();
       done();
     });
   });
