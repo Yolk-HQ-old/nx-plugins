@@ -11,9 +11,9 @@
       "schema": "./src/builders/build/schema.json",
       "description": "Build a Next.js app"
     },
-    "dev-server": {
-      "implementation": "./src/builders/dev-server/dev-server.impl",
-      "schema": "./src/builders/dev-server/schema.json",
+    "serve": {
+      "implementation": "./src/builders/serve/serve.impl",
+      "schema": "./src/builders/serve/schema.json",
       "description": "Serve a Next.js app"
     },
     "export": {
