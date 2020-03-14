@@ -22,6 +22,16 @@
     "@angular-devkit/architect": "0.900.6",
     "@angular-devkit/core": "9.0.6",
     "@angular-devkit/schematics": "9.0.6",
-    "rxjs": "6.5.4"
+    "rxjs": "6.5.3"
+  },
+  "devDependencies": {
+    "next": "9.1.5",
+    "react": "16.13.0",
+    "react-dom": "16.13.0"
+  },
+  "peerDependencies": {
+    "next": "~9.1.5",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   }
 }
