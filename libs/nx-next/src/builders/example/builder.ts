@@ -5,10 +5,10 @@ import {
 } from '@angular-devkit/architect';
 import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { NxNextBuilderSchema } from './schema';
+import { ExampleBuilderSchema } from './schema';
 
 export function runBuilder(
-  options: NxNextBuilderSchema,
+  options: ExampleBuilderSchema,
   context: BuilderContext
 ): Observable<BuilderOutput> {
   return of({ success: true }).pipe(

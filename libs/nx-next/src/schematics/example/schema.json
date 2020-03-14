@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "id": "NxNext",
+  "id": "Example",
   "title": "",
   "type": "object",
   "properties": {

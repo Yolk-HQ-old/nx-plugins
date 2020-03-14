@@ -2,9 +2,9 @@ import { Architect } from '@angular-devkit/architect';
 import { TestingArchitectHost } from '@angular-devkit/architect/testing';
 import { schema } from '@angular-devkit/core';
 import { join } from 'path';
-import { NxNextBuilderSchema } from './schema';
+import { ExampleBuilderSchema } from './schema';
 
-const options: NxNextBuilderSchema = {};
+const options: ExampleBuilderSchema = {};
 
 describe('Command Runner Builder', () => {
   let architect: Architect;
@@ -25,7 +25,7 @@ describe('Command Runner Builder', () => {
   it('can run', async () => {
     // A "run" can have multiple outputs, and contains progress information.
     const run = await architect.scheduleBuilder(
-      '@yolkai/nx-next:build',
+      '@yolkai/nx-next:example',
       options
     );
     // The "result" member (of type BuilderOutput) is the next output.

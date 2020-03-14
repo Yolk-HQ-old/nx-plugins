@@ -3,11 +3,11 @@ import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
 import { createEmptyWorkspace } from '@nrwl/workspace/testing';
 import { join } from 'path';
 
-import { NxNextSchematicSchema } from './schema';
+import { ExampleSchematicSchema } from './schema';
 
-describe('nx-next schematic', () => {
+describe('example schematic', () => {
   let appTree: Tree;
-  const options: NxNextSchematicSchema = { name: 'test' };
+  const options: ExampleSchematicSchema = { name: 'test' };
 
   const testRunner = new SchematicTestRunner(
     '@yolkai/nx-next',
@@ -20,7 +20,7 @@ describe('nx-next schematic', () => {
 
   it('should run successfully', async () => {
     await expect(
-      testRunner.runSchematicAsync('nxNext', options, appTree).toPromise()
+      testRunner.runSchematicAsync('example', options, appTree).toPromise()
     ).resolves.not.toThrowError();
   });
 });

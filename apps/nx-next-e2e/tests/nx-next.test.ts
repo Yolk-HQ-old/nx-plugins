@@ -5,11 +5,12 @@ import {
   runNxCommandAsync,
   uniq
 } from '@nrwl/nx-plugin/testing';
+
 describe('nx-next e2e', () => {
   it('should create nx-next', async done => {
     const plugin = uniq('nx-next');
     ensureNxProject('@yolkai/nx-next', 'dist/libs/nx-next');
-    await runNxCommandAsync(`generate @yolkai/nx-next:nxNext ${plugin}`);
+    await runNxCommandAsync(`generate @yolkai/nx-next:example ${plugin}`);
 
     const result = await runNxCommandAsync(`build ${plugin}`);
     expect(result.stdout).toContain('Builder ran');
@@ -22,7 +23,7 @@ describe('nx-next e2e', () => {
       const plugin = uniq('nx-next');
       ensureNxProject('@yolkai/nx-next', 'dist/libs/nx-next');
       await runNxCommandAsync(
-        `generate @yolkai/nx-next:nxNext ${plugin} --directory subdir`
+        `generate @yolkai/nx-next:example ${plugin} --directory subdir`
       );
       expect(() =>
         checkFilesExist(`libs/subdir/${plugin}/src/index.ts`)
@@ -36,7 +37,7 @@ describe('nx-next e2e', () => {
       const plugin = uniq('nx-next');
       ensureNxProject('@yolkai/nx-next', 'dist/libs/nx-next');
       await runNxCommandAsync(
-        `generate @yolkai/nx-next:nxNext ${plugin} --tags e2etag,e2ePackage`
+        `generate @yolkai/nx-next:example ${plugin} --tags e2etag,e2ePackage`
       );
       const nxJson = readJson('nx.json');
       expect(nxJson.projects[plugin].tags).toEqual(['e2etag', 'e2ePackage']);
