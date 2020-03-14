@@ -1,0 +1,22 @@
+{
+  "npmScope": "yolkai",
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "nx-next": {
+      "tags": []
+    },
+    "nx-next-e2e": {
+      "tags": [],
+      "implicitDependencies": ["nx-next"]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "../../node_modules/@angular-devkit/architect/src/builders-schema.json",
+  "builders": {
+    "build": {
+      "implementation": "./src/builders/nx-next/builder",
+      "schema": "./src/builders/nx-next/schema.json",
+      "description": "nx-next builder"
+    }
+  }
+}
