@@ -1,7 +1,21 @@
 {
   "name": "@yolkai/nx-next",
   "version": "0.0.1-alpha.0",
+  "description": "Nx plugin for Next.js",
   "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yolk-HQ/nx-plugins.git"
+  },
+  "author": "Spencer Elliott <spencer@yolk.ai>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yolk-HQ/nx-plugins/issues"
+  },
+  "homepage": "https://github.com/Yolk-HQ/nx-plugins#readme",
   "schematics": "./collection.json",
   "builders": "./builders.json",
   "dependencies": {

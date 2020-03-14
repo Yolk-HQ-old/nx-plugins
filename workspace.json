@@ -68,7 +68,7 @@
             "npmPackageName": "@yolkai/nx-next",
             "pluginOutputPath": "dist/libs/nx-next",
             "jestConfig": "apps/nx-next-e2e/jest.config.js",
-            "tsSpecConfig": "apps/nx-next-e2e/tsconfig.spec.json"
+            "tsSpecConfig": "apps/nx-next-e2e/tsconfig.json"
           }
         }
       }

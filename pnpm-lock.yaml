@@ -19,6 +19,7 @@ importers:
       prettier: 1.19.1
       ts-jest: 24.0.0_jest@24.9.0
       ts-node: 7.0.1
+      tslib: 1.11.1
       typescript: 3.8.3
     specifiers:
       '@nrwl/cli': 9.1.2
@@ -39,6 +40,7 @@ importers:
       prettier: 1.19.1
       ts-jest: 24.0.0
       ts-node: ~7.0.0
+      tslib: 1.11.1
       typescript: 3.8.3
   libs/nx-next:
     dependencies:

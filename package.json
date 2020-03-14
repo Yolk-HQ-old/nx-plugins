@@ -46,6 +46,7 @@
     "prettier": "1.19.1",
     "ts-jest": "24.0.0",
     "ts-node": "~7.0.0",
+    "tslib": "1.11.1",
     "typescript": "3.8.3"
   }
 }
