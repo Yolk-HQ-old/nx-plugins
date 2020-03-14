@@ -3,25 +3,19 @@ import {
   BuilderOutput,
   createBuilder,
   scheduleTargetAndForget,
-  targetFromTargetString,
+  targetFromTargetString
 } from '@angular-devkit/architect';
 import exportApp from 'next/dist/export';
-import { PHASE_EXPORT } from 'next/dist/next-server/lib/constants';
 import * as path from 'path';
 import { from, Observable, of } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
-import { prepareConfig } from '../../utils/config';
-import { NextBuildBuilderOptions, NextExportBuilderOptions } from '../../utils/types';
 
-try {
-  require('dotenv').config();
-} catch (e) {}
+import { ExportBuilderSchema } from './schema';
+import { BuildBuilderSchema } from '../build/schema';
 
-export default createBuilder<NextExportBuilderOptions>(run);
-
-function run(
-  options: NextExportBuilderOptions,
-  context: BuilderContext,
+function runBuilder(
+  options: ExportBuilderSchema,
+  context: BuilderContext
 ): Observable<BuilderOutput> {
   const buildTarget = targetFromTargetString(options.buildTarget);
   const build$ = scheduleTargetAndForget(context, buildTarget);
@@ -30,28 +24,16 @@ function run(
     concatMap(r => {
       if (!r.success) return of(r);
       return from(context.getTargetOptions(buildTarget)).pipe(
-        concatMap((buildOptions: NextBuildBuilderOptions) => {
+        concatMap(buildOptions_ => {
+          const buildOptions = buildOptions_ as BuildBuilderSchema;
           const root = path.resolve(context.workspaceRoot, buildOptions.root);
-          const config = prepareConfig(
-            context.workspaceRoot,
-            buildOptions.root,
-            buildOptions.outputPath,
-            buildOptions.fileReplacements,
-            PHASE_EXPORT,
-          );
           return from(
-            exportApp(
-              root,
-              {
-                silent: options.silent,
-                threads: options.threads,
-                outdir: `${buildOptions.outputPath}/exported`,
-              } as any,
-              config,
-            ),
+            exportApp(root, { outdir: `${buildOptions.outputPath}/exported` })
           ).pipe(map(() => ({ success: true })));
-        }),
+        })
       );
-    }),
+    })
   );
 }
+
+export default createBuilder<ExportBuilderSchema>(runBuilder);
