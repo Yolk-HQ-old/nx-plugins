@@ -1,104 +1,135 @@
+import * as http from 'http';
+import next from 'next';
+import * as path from 'path';
+import { forkJoin, from, Observable, of } from 'rxjs';
+import { concatMap, switchMap, tap } from 'rxjs/operators';
+
 import {
   BuilderContext,
   BuilderOutput,
   createBuilder,
   scheduleTargetAndForget,
-  targetFromTargetString,
+  targetFromTargetString
 } from '@angular-devkit/architect';
 import { terminal } from '@angular-devkit/core';
-import * as fs from 'fs';
-import {
-  PHASE_DEVELOPMENT_SERVER,
-  PHASE_PRODUCTION_SERVER,
-} from 'next/dist/next-server/lib/constants';
-import * as path from 'path';
-import { from, Observable, of } from 'rxjs';
-import { concatMap, switchMap, tap } from 'rxjs/operators';
-import { prepareConfig } from '../../utils/config';
-import {
-  NextBuildBuilderOptions,
-  NextServeBuilderOptions,
-  NextServer,
-  NextServerOptions,
-  ProxyConfig,
-} from '../../utils/types';
-import { customServer } from './lib/custom-server';
-import { defaultServer } from './lib/default-server';
 
-try {
-  require('dotenv').config();
-} catch (e) {}
+import { StartServerFn } from '../../utils/types';
+import { BuildBuilderSchema } from '../build/schema';
+import { ServeBuilderSchema } from './schema';
 
-export default createBuilder<NextServeBuilderOptions>(run);
+/**
+ * A simple default server implementation to be used if no `customServerTarget` is provided.
+ */
+const defaultStartServer: StartServerFn = async (nextApp, options) => {
+  const handle = nextApp.getRequestHandler();
+  await nextApp.prepare();
+  const server = http.createServer((req, res) => {
+    handle(req, res);
+  });
+  return new Promise((resolve, reject) => {
+    server.on('error', (error: Error) => {
+      if (error) {
+        reject(error);
+      }
+    });
+    if (options.hostname) {
+      server.listen(options.port, options.hostname, () => {
+        resolve();
+      });
+    } else {
+      server.listen(options.port, () => {
+        resolve();
+      });
+    }
+  });
+};
 
 const infoPrefix = `[ ${terminal.dim(terminal.cyan('info'))} ] `;
 const readyPrefix = `[ ${terminal.green('ready')} ]`;
 
-export function run(
-  options: NextServeBuilderOptions,
-  context: BuilderContext,
+export function runBuilder(
+  options: ServeBuilderSchema,
+  context: BuilderContext
 ): Observable<BuilderOutput> {
   const buildTarget = targetFromTargetString(options.buildTarget);
+  const customServerTarget =
+    options.customServerTarget && targetFromTargetString(options.customServerTarget);
   const baseUrl = `http://${options.hostname || 'localhost'}:${options.port}`;
 
-  const build$ = !options.dev
-    ? scheduleTargetAndForget(context, buildTarget)
-    : of({ success: true });
+  const success: BuilderOutput = { success: true };
+  let build$;
+  if (!options.dev && !options.skipBuild) {
+    context.logger.info(`${infoPrefix} building buildTarget ${options.buildTarget}`);
+    build$ = scheduleTargetAndForget(context, buildTarget);
+  } else {
+    context.logger.info(`${infoPrefix} skipping buildTarget ${options.buildTarget}`);
+    build$ = of(success);
+  }
 
-  return build$.pipe(
-    concatMap(r => {
-      if (!r.success) return of(r);
+  let customServer$;
+  if (customServerTarget && !options.skipBuild) {
+    context.logger.info(`${infoPrefix} building customServerTarget ${options.customServerTarget}`);
+    customServer$ = scheduleTargetAndForget(context, customServerTarget);
+  } else {
+    if (customServerTarget) {
+      context.logger.info(`${infoPrefix} no customServerTarget provided; using built-in server`);
+    } else {
+      context.logger.info(`${infoPrefix} skipping customServerTarget ${options.buildTarget}`);
+    }
+    customServer$ = of(success);
+  }
+
+  return forkJoin(build$, customServer$).pipe(
+    concatMap(([buildResult, customServerResult]) => {
+      if (!buildResult.success) return of(buildResult);
+      if (!customServerResult.success) return of(customServerResult);
+
       return from(context.getTargetOptions(buildTarget)).pipe(
-        concatMap((buildOptions: NextBuildBuilderOptions) => {
-          const root = path.resolve(context.workspaceRoot, buildOptions.root);
+        concatMap(buildOptions_ => {
+          const buildOptions = buildOptions_ as BuildBuilderSchema;
+          const root = path.resolve(context.workspaceRoot, buildOptions.root as string);
 
-          const config = prepareConfig(
-            context.workspaceRoot,
-            buildOptions.root,
-            buildOptions.outputPath,
-            buildOptions.fileReplacements,
-            options.dev ? PHASE_DEVELOPMENT_SERVER : PHASE_PRODUCTION_SERVER,
-          );
-
-          const settings: NextServerOptions = {
+          const nextApp = next({
             dev: options.dev,
-            dir: root,
-            staticMarkup: options.staticMarkup,
-            quiet: options.quiet,
-            conf: config,
-            port: options.port,
-            path: options.customServerPath,
-            hostname: options.hostname,
-          };
+            dir: root
+          });
 
-          const server: NextServer = options.customServerPath ? customServer : defaultServer;
-
-          // look for the proxy.conf.json
-          let proxyConfig: ProxyConfig;
-          const proxyConfigPath = options.proxyConfig
-            ? path.join(context.workspaceRoot, options.proxyConfig)
-            : path.join(root, 'proxy.conf.json');
-          if (fs.existsSync(proxyConfigPath)) {
-            context.logger.info(`${infoPrefix} found proxy configuration at ${proxyConfigPath}`);
-            proxyConfig = require(proxyConfigPath);
+          let server$: Observable<void>;
+          if (customServerTarget) {
+            server$ = from(context.getTargetOptions(customServerTarget)).pipe(
+              concatMap(customServerOptions => {
+                const customServerEntry = path.join(
+                  context.workspaceRoot,
+                  customServerOptions.outputPath as string,
+                  'main.js'
+                );
+                const startServer: StartServerFn = require(customServerEntry).startServer;
+                return from(startServer(nextApp, options));
+              })
+            );
+          } else {
+            const startServer: StartServerFn = defaultStartServer;
+            server$ = from(startServer(nextApp, options));
           }
 
-          return from(server(settings, proxyConfig)).pipe(
+          return server$.pipe(
             tap(() => {
               context.logger.info(`${readyPrefix} on ${baseUrl}`);
             }),
             switchMap(
-              e =>
+              () =>
                 new Observable<BuilderOutput>(obs => {
                   obs.next({
                     baseUrl,
-                    success: true,
+                    success: true
                   });
-                }),
-            ),
+                })
+            )
           );
-        }),
+        })
       );
-    }),
+    })
   );
 }
+
+export default createBuilder<ServeBuilderSchema>(runBuilder);

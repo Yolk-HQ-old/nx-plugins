@@ -10,37 +10,27 @@
     },
     "buildTarget": {
       "type": "string",
-      "description": "Target which builds the application"
+      "description": "Target which builds the application."
     },
-    "port": {
-      "type": "number",
-      "description": "Port to listen on.",
-      "default": 4200
-    },
-    "staticMarkup": {
-      "type": "boolean",
-      "description": "Static markup.",
-      "default": false
-    },
-    "quiet": {
-      "type": "boolean",
-      "description": "Hide error messages containing server information.",
-      "default": false
-    },
-    "customServerPath": {
+    "customServerTarget": {
       "type": "string",
-      "description": "Use a custom server script",
+      "description": "Target which builds a custom server",
       "default": null
+    },
+    "skipBuild": {
+      "type": "boolean",
+      "description": "Skip building buildTarget and customServerTarget.",
+      "default": false
     },
     "hostname": {
       "type": "string",
       "description": "Hostname on which the application is served.",
       "default": null
     },
-    "proxyConfig": {
-      "type": "string",
-      "description": "Path to the proxy configuration file.",
-      "default": null
+    "port": {
+      "type": "number",
+      "description": "Port to listen on.",
+      "default": 4200
     }
   },
   "required": []
