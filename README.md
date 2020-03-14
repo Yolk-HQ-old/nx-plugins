@@ -18,6 +18,13 @@ pnpm run nx -- run-many --target test --all
 pnpm run nx -- run-many --target e2e --all
 ```
 
+### Publish a plugin
+
+```shell
+pnpm run nx -- run nx-next:build
+pnpm publish ./dist/libs/nx-next
+```
+
 ### Creating a new plugin
 
 ```shell
