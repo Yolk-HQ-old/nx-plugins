@@ -1,5 +1,4 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
     "rootDir": ".",
     "sourceMap": true,
@@ -18,6 +17,5 @@
     "paths": {
       "@yolkai/nx-next": ["libs/nx-next/src/index.ts"]
     }
-  },
-  "exclude": ["node_modules", "tmp"]
+  }
 }
