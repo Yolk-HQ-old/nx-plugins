@@ -2,6 +2,8 @@
 
 A collection of Nx plugins.
 
+- [@yolkai/nx-next](libs/nx-next)
+
 ## Contributing
 
 ### Setup
@@ -25,7 +27,7 @@ pnpm run nx -- run nx-next:build
 pnpm publish ./dist/libs/nx-next
 ```
 
-### Creating a new plugin
+### Create a new plugin
 
 ```shell
 pnpm run nx -- generate @nrwl/nx-plugin:plugin [pluginName]
