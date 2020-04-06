@@ -72,9 +72,9 @@ export function runBuilder(
     customServer$ = scheduleTargetAndForget(context, customServerTarget);
   } else {
     if (customServerTarget) {
-      context.logger.info(`${infoPrefix} no customServerTarget provided; using built-in server`);
-    } else {
       context.logger.info(`${infoPrefix} skipping customServerTarget ${options.buildTarget}`);
+    } else {
+      context.logger.info(`${infoPrefix} no customServerTarget provided; using built-in server`);
     }
     customServer$ = of(success);
   }
