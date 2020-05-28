@@ -1,6 +1,6 @@
 {
   "name": "@yolkai/nx-next",
-  "version": "9.0.0-alpha.0",
+  "version": "9.0.0",
   "description": "Nx plugin for Next.js",
   "main": "src/index.js",
   "scripts": {
