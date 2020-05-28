@@ -27,9 +27,18 @@ const withNx = (projectName: string) => (nextConfig: any = {}) => {
   const projects = readWorkspaceJson().projects;
   const thisProject = projects[projectName];
 
+  const nextArchitectEntry: any = Object.values(thisProject.architect).find(
+    (architectEntry: any) => architectEntry.builder === '@yolkai/nx-next:build'
+  );
+  if (!nextArchitectEntry) {
+    throw new Error(
+      `Project ${projectName} does not contain an architect entry using builder '@yolkai/nx-next:build'`
+    );
+  }
+
   const distDir = path.join(
     offsetFromRoot(thisProject.root),
-    thisProject.architect.build.options.outputPath
+    nextArchitectEntry.options.outputPath
   );
 
   return {
