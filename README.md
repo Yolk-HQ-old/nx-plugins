@@ -9,8 +9,8 @@ A collection of Nx plugins.
 ### Setup
 
 ```shell
-npm install --global pnpm@4
-pnpm install --recursive
+npm install --global pnpm@5.2.1
+pnpm install
 ```
 
 ### Run tests
