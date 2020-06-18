@@ -2,6 +2,8 @@
 
 An Nx plugin for Next.js applications.
 
+Nrwl publishes [its own Next.js plugin](https://github.com/nrwl/nx/tree/master/packages/next), however it [does not support launching a TypeScript custom server](https://github.com/nrwl/nx/pull/2227). With our own plugin, we have a simpler implementation and support for launching a TypeScript custom server.
+
 ## Installation
 
 ```shell
