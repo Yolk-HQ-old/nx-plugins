@@ -12,7 +12,7 @@ describe('nx-next e2e', () => {
     ensureNxProject('@yolkai/nx-next', 'dist/libs/nx-next');
     await runNxCommandAsync(`generate @yolkai/nx-next:example ${plugin}`);
 
-    const result = await runNxCommandAsync(`build ${plugin}`);
+    const result = await runNxCommandAsync(`example ${plugin}`);
     expect(result.stdout).toContain('Builder ran');
 
     done();
