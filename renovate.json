@@ -1,0 +1,14 @@
+{
+  "extends": ["config:base", ":pinVersions", "schedule:earlyMondays"],
+  "packageRules": [
+    {
+      "languages": ["js"],
+      "packagePatterns": ["*"],
+      "minor": {
+        "groupName": "all non-major dependencies",
+        "groupSlug": "all-minor-patch"
+      }
+    }
+  ],
+  "rebaseWhen": "never"
+}
