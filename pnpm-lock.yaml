@@ -9,7 +9,7 @@ importers:
       '@nrwl/tao': 9.4.4
       '@nrwl/workspace': 9.4.4_prettier@1.19.1
       '@types/jest': 24.9.1
-      '@types/node': 12.12.47
+      '@types/node': 12.12.53
       '@types/prettier': 1.19.0
       '@typescript-eslint/eslint-plugin': 2.19.2_b5cba32143af93cf5daf05772474d9d4
       '@typescript-eslint/parser': 2.19.2_eslint@6.8.0+typescript@3.8.3
@@ -29,7 +29,7 @@ importers:
       '@nrwl/tao': 9.4.4
       '@nrwl/workspace': 9.4.4
       '@types/jest': 24.9.1
-      '@types/node': ^12.12.30
+      '@types/node': 12.12.53
       '@types/prettier': 1.19.0
       '@typescript-eslint/eslint-plugin': 2.19.2
       '@typescript-eslint/parser': 2.19.2
@@ -585,7 +585,7 @@ packages:
   /@babel/plugin-syntax-async-generators/7.8.4_@babel+core@7.10.2:
     dependencies:
       '@babel/core': 7.10.2
-      '@babel/helper-plugin-utils': 7.10.1
+      '@babel/helper-plugin-utils': 7.10.4
     dev: true
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -648,7 +648,7 @@ packages:
   /@babel/plugin-syntax-json-strings/7.8.3_@babel+core@7.10.2:
     dependencies:
       '@babel/core': 7.10.2
-      '@babel/helper-plugin-utils': 7.10.1
+      '@babel/helper-plugin-utils': 7.10.4
     dev: true
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -747,7 +747,7 @@ packages:
   /@babel/plugin-syntax-optional-catch-binding/7.8.3_@babel+core@7.10.2:
     dependencies:
       '@babel/core': 7.10.2
-      '@babel/helper-plugin-utils': 7.10.1
+      '@babel/helper-plugin-utils': 7.10.4
     dev: true
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -1827,6 +1827,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-yzBInQFhdY8kaZmqoL2+3U5dSTMrKaYcb561VU+lDzAYvqt+2lojvBEy+hmpSNuXnPTx7m9+04CzWYOUqWME2A==
+  /@types/node/12.12.53:
+    dev: true
+    resolution:
+      integrity: sha512-51MYTDTyCziHb70wtGNFRwB4l+5JNvdqzFSkbDvpbftEgVUBEE+T5f7pROhWMp/fxp07oNIEQZd5bbfAH22ohQ==
   /@types/node/14.0.13:
     dev: false
     resolution:
