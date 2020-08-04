@@ -1,5 +1,5 @@
 {
-  "extends": ["config:base", ":pinVersions", "schedule:earlyMondays"],
+  "extends": ["config:base", ":pinAllExceptPeerDependencies", "schedule:earlyMondays"],
   "packageRules": [
     {
       "languages": ["js"],
