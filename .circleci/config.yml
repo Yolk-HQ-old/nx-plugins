@@ -11,6 +11,7 @@ jobs:
           steps:
             - run: sudo npm install --global pnpm@5.4.6
             - run: pnpm install
+            - run: pnpm nx -- format:check
             - run: pnpm nx -- run-many --target test --all
             - run: pnpm nx -- run-many --target e2e --all
 workflows:
