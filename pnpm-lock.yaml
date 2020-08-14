@@ -18,7 +18,7 @@ importers:
       jest: 26.2.2
       prettier: 2.0.5
       ts-jest: 26.1.4_jest@26.2.2+typescript@3.8.3
-      tslib: 1.11.1
+      tslib: 2.0.1
       typescript: 3.8.3
     specifiers:
       '@nrwl/cli': 9.4.4
@@ -38,7 +38,7 @@ importers:
       jest: 26.2.2
       prettier: 2.0.5
       ts-jest: 26.1.4
-      tslib: 1.11.1
+      tslib: 2.0.1
       typescript: 3.8.3
   libs/nx-next:
     dependencies:
@@ -8985,7 +8985,7 @@ packages:
       integrity: sha512-naMQXcgEo3csAEGvw/NydRA0fuS2nDZJiw1YUWFKU7aPPAPGZEsD4Iimit96qwCieH6y614MCLYwdkrWx7z/7Q==
   /rxjs/6.5.5:
     dependencies:
-      tslib: 1.11.1
+      tslib: 1.13.0
     dev: true
     engines:
       npm: '>=2.0.0'
@@ -10147,6 +10147,10 @@ packages:
   /tslib/1.13.0:
     resolution:
       integrity: sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
+  /tslib/2.0.1:
+    dev: true
+    resolution:
+      integrity: sha512-SgIkNheinmEBgx1IUNirK0TUD4X9yjjBRTqqjggWCU3pUEqIk3/Uwl3yRixYKT6WjQuGiwDv4NomL3wqRCj+CQ==
   /tsutils/3.17.1_typescript@3.8.3:
     dependencies:
       tslib: 1.11.1
