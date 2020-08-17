@@ -1,19 +1,19 @@
 version: 2.1
 orbs:
-  node: circleci/node@1.1.6
+  node: circleci/node@4.0.0
 jobs:
   build-and-test:
     executor:
       name: node/default
+      tag: '12.18.3'
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: sudo npm install --global pnpm@5.4.6
-            - run: pnpm install
-            - run: pnpm nx -- format:check
-            - run: pnpm nx -- run-many --target test --all
-            - run: pnpm nx -- run-many --target e2e --all
+      - node/install-yarn
+      - run: sudo npm install --global pnpm@5.4.6
+      - run: pnpm install
+      - run: pnpm nx -- format:check
+      - run: pnpm nx -- run-many --target test --all
+      - run: pnpm nx -- run-many --target e2e --all
 workflows:
   build-and-test:
     jobs:
