@@ -46,7 +46,7 @@ importers:
       '@angular-devkit/core': 10.0.7
       '@angular-devkit/schematics': 10.0.7
       '@types/webpack': 4.41.21
-      rxjs: 6.6.2
+      rxjs: 6.5.5
       tsconfig-paths-webpack-plugin: 3.3.0
     devDependencies:
       '@types/react': 16.9.46
@@ -64,7 +64,7 @@ importers:
       next: 9.5.2
       react: 16.13.1
       react-dom: 16.13.1
-      rxjs: 6.6.2
+      rxjs: 6.5.5
       tsconfig-paths-webpack-plugin: 3.3.0
 lockfileVersion: 5.1
 packages:
@@ -8512,6 +8512,7 @@ packages:
   /rxjs/6.6.2:
     dependencies:
       tslib: 1.13.0
+    dev: true
     engines:
       npm: '>=2.0.0'
     resolution:

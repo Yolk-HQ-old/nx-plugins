@@ -23,7 +23,7 @@
     "@angular-devkit/core": "10.0.7",
     "@angular-devkit/schematics": "10.0.7",
     "@types/webpack": "4.41.21",
-    "rxjs": "6.6.2",
+    "rxjs": "6.5.5",
     "tsconfig-paths-webpack-plugin": "3.3.0"
   },
   "devDependencies": {
