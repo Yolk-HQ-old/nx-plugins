@@ -9,7 +9,7 @@ A collection of Nx plugins.
 ### Setup
 
 ```shell
-npm install --global pnpm@5.4.6
+npm install --global pnpm@5.12.0
 pnpm install
 ```
 
